@@ -7,7 +7,7 @@ const RankChart = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5050/rank')
+    fetch('http://http://backend:5050/rank')
       .then((response) => response.json())
       .then((data) => {
         const chartData = {

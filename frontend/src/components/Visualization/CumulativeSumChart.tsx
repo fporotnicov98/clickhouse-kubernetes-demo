@@ -7,7 +7,7 @@ const CumulativeSumChart = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5050/cumulative-sum')
+    fetch('http://http://backend:5050/cumulative-sum')
       .then((response) => response.json())
       .then((data) => {
         const chartData = {

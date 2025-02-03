@@ -7,7 +7,7 @@ const CountByGroupChart = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5050/count-by-group')
+    fetch('http://http://backend:5050/count-by-group')
       .then((response) => response.json())
       .then((data) => {
         const chartData = {

@@ -28,7 +28,7 @@ const Engine = () => {
 
   const fetchData = async (page: number = 1, pageSize: number = 500) => {
     try {
-      const response = await fetch(`http://localhost:5050/data?limit=${pageSize}&offset=${(page - 1) * pageSize}`);
+      const response = await fetch(`http://http://backend:5050/data?limit=${pageSize}&offset=${(page - 1) * pageSize}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -41,13 +41,13 @@ const Engine = () => {
 
   const handleGenerateData = async (rows: number) => {
     try {
-      await fetch('http://localhost:5050/create-table', {
+      await fetch('http://http://backend:5050/create-table', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ engine: selectedEngine }),
       });
       
-      await fetch('http://localhost:5050/generate-data', {
+      await fetch('http://http://backend:5050/generate-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rows }),
@@ -62,7 +62,7 @@ const Engine = () => {
 
   const handleDeleteTable = async () => {
     try {
-      await fetch('http://localhost:5050/drop-table', {
+      await fetch('http://http://backend:5050/drop-table', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });

@@ -7,7 +7,7 @@ const MovingAvgChart = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5050/moving-avg')
+    fetch('http://http://backend:5050/moving-avg')
       .then((response) => response.json())
       .then((data) => {
         const chartData = {

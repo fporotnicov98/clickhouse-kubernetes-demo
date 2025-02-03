@@ -37,7 +37,7 @@ const Visualization = () => {
   const fetchData = async (query: string) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5050/query', {
+      const response = await fetch('http://http://backend:5050/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query }),

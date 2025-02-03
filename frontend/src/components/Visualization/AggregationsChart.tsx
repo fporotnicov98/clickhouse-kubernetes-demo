@@ -7,7 +7,7 @@ const AggregationsChart = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5050/aggregations')
+    fetch('http://http://backend:5050/aggregations')
       .then((response) => response.json())
       .then((data) => {
         const chartData = {
