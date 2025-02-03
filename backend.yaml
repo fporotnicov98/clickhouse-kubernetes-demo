@@ -15,9 +15,26 @@ spec:
     spec:
       containers:
       - name: backend
-        image: your-dockerhub-username/backend:latest
+        image: localhost:5000/backend:latest
         ports:
         - containerPort: 5050
         env:
         - name: CLICKHOUSE_HOST
           value: "clickhouse"
+        - name: NODE_ENV
+          value: "production"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: clickhouse-demo
+spec:
+  selector:
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 5050
+    targetPort: 5050
+  type: ClusterIP

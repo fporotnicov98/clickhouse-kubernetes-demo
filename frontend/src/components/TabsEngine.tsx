@@ -9,24 +9,31 @@ export const TabsEngine: React.FC<TabsEngineProps> = ({ onEngineChange }) => {
 
   return (
     <Tabs.Root
-      onChange={(index) => onEngineChange(engines[index])}
+      onChange={(event) => {
+        const target = event.target as HTMLDivElement;
+        const value = target.getAttribute("data-value");
+
+        if (value && engines.includes(value)) {
+          onEngineChange(value);
+        }
+      }}
       defaultValue="MergeTree"
       w={'100%'}
     >
       <Tabs.List>
-        <Tabs.Trigger value="MergeTree">MergeTree</Tabs.Trigger>
-        <Tabs.Trigger value="ReplacingMergeTree">ReplacingMergeTree</Tabs.Trigger>
-        <Tabs.Trigger value="AggregatingMergeTree">AggregatingMergeTree</Tabs.Trigger>
+        {engines.map((engine) => (
+          <Tabs.Trigger key={engine} value={engine}>
+            {engine}
+          </Tabs.Trigger>
+        ))}
       </Tabs.List>
-      <Tabs.Content value="MergeTree">
-        MergeTree — это основной движок таблиц в ClickHouse. Он обеспечивает высокую производительность для аналитических запросов.
-      </Tabs.Content>
-      <Tabs.Content value="ReplacingMergeTree">
-        ReplacingMergeTree — это движок, который автоматически удаляет дубликаты данных на основе первичного ключа.
-      </Tabs.Content>
-      <Tabs.Content value="AggregatingMergeTree">
-        AggregatingMergeTree — это движок, который автоматически агрегирует данные при вставке.
-      </Tabs.Content>
+      {engines.map((engine) => (
+        <Tabs.Content key={engine} value={engine}>
+          {engine === "MergeTree" && "MergeTree — это основной движок таблиц в ClickHouse. Он обеспечивает высокую производительность для аналитических запросов."}
+          {engine === "ReplacingMergeTree" && "ReplacingMergeTree — это движок, который автоматически удаляет дубликаты данных на основе первичного ключа."}
+          {engine === "AggregatingMergeTree" && "AggregatingMergeTree — это движок, который автоматически агрегирует данные при вставке."}
+        </Tabs.Content>
+      ))}
     </Tabs.Root>
   );
 };
